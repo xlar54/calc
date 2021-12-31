@@ -1,0 +1,32 @@
+.calc {
+
+    background-color: grey;
+    width: 200px;
+    border: black 1px solid;
+    margin-top: 100px;
+    margin-left: 200px;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.display {
+
+    background-color: white;
+    border: 1px solid black;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.numbutton {
+
+    background-color: white;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
