@@ -1,11 +1,12 @@
 import React, {Component} from "react"
+import { Button } from 'react-bootstrap'
 import "../styles/main.css"
 
 class NumButton extends React.Component {
 
-    constructor() {
+    constructor(props) {
 
-        super();
+        super(props);
 
         this.state = {
             val: 0
@@ -13,13 +14,18 @@ class NumButton extends React.Component {
 
     }
 
+    clickHandler = () => {
+
+        this.props.handler(this.props.digit);
+    }
+
     render() {
 
         return(
 
-                <button className="numbutton">
+                <Button className="numbutton" onClick={this.clickHandler}>
                     {this.props.digit}
-                </button>
+                </Button>
 
 
         )

@@ -4,31 +4,104 @@ import NumButton from './NumButton'
 
 class Calculator extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            result: "0",
+            lastval: 0,
+            lastop: ""
+        }
+
+        this.clickHandler = this.clickHandler.bind(this);
+
+    }
+
+    clickHandler(key) {
+
+        if(key === "C" || key === "CE")
+        {
+            this.setState({
+                result: "0"
+            })
+        }
+        else if (key === "+" || key === "-" || key === "x" || key === "/") {
+            this.setState({
+                lastop: key,
+                lastval: this.state.result,
+                result: "0"
+            }) 
+        }
+        else if (key === "=") {
+            if(this.state.lastop === "+")
+            {
+                this.setState({
+                    result: parseInt(this.state.lastval) + parseInt(this.state.result)
+                }) 
+            } else if (this.state.lastop === "-")
+            {
+                this.setState({
+                    result: parseInt(this.state.lastval) - parseInt(this.state.result)
+                }) 
+            } else if (this.state.lastop === "x")
+            {
+                this.setState({
+                    result: parseInt(this.state.lastval) * parseInt(this.state.result)
+                }) 
+            } else if (this.state.lastop === "/")
+            {
+                this.setState({
+                    result: parseInt(this.state.lastval) / parseInt(this.state.result)
+                }) 
+            }
+            
+        }
+        else {
+            if(this.state.result === "0") {
+                this.setState({
+                    result: key
+                })
+            }
+            else {
+                this.setState({
+                    result: this.state.result + key
+                })
+            }
+            
+        }
+
+        
+    }
 
     render() {
 
         return (
             <div>
-                <Display val="0"/>
-                <NumButton digit="1" />
-                <NumButton digit="2" />
-                <NumButton digit="3" />
-                <NumButton digit="+" />
+                <Display val={this.state.result}/>
+                <NumButton digit="%" />
+                <NumButton digit="CE" handler={this.clickHandler}/>
+                <NumButton digit="C" handler={this.clickHandler}/>
+                <NumButton digit="/" handler={this.clickHandler}/>
                 <br />
-                <NumButton digit="4" />
-                <NumButton digit="5" />
-                <NumButton digit="6" />
-                <NumButton digit="-" />
+                <NumButton digit="7" handler={this.clickHandler}/>
+                <NumButton digit="8" handler={this.clickHandler}/>
+                <NumButton digit="9" handler={this.clickHandler}/>
+                <NumButton digit="x" handler={this.clickHandler}/>
                 <br />
-                <NumButton digit="7" />
-                <NumButton digit="8" />
-                <NumButton digit="9" />
-                <NumButton digit="*" />
+                <NumButton digit="4" handler={this.clickHandler}/>
+                <NumButton digit="5" handler={this.clickHandler}/>
+                <NumButton digit="6" handler={this.clickHandler}/>
+                <NumButton digit="+" handler={this.clickHandler}/>
                 <br />
-                <NumButton digit="C" />
-                <NumButton digit="0" />
-                <NumButton digit="CE" />
-                <NumButton digit="/" />
+                <NumButton digit="1" handler={this.clickHandler}/>
+                <NumButton digit="2" handler={this.clickHandler}/>
+                <NumButton digit="3" handler={this.clickHandler}/>
+                <NumButton digit="-" handler={this.clickHandler}/>
+                <br />
+                <NumButton digit="+/-" />
+                <NumButton digit="0" handler={this.clickHandler}/>
+                <NumButton digit="." />
+                <NumButton digit="=" handler={this.clickHandler}/>
             </div>
         )
     }
