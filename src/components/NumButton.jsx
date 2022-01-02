@@ -1,6 +1,6 @@
-import React, {Component} from "react"
-import { Button } from 'react-bootstrap'
+import React from "react"
 import "../styles/main.css"
+import Button from '@mui/material/Button';
 
 class NumButton extends React.Component {
 
@@ -23,7 +23,7 @@ class NumButton extends React.Component {
 
         return(
 
-                <Button className="numbutton" onClick={this.clickHandler}>
+                <Button className="numbutton" onClick={this.clickHandler} variant="contained">
                     {this.props.digit}
                 </Button>
 

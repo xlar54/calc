@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Display from './Display'
 import NumButton from './NumButton'
 
 class Calculator extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
@@ -73,7 +74,7 @@ class Calculator extends React.Component {
             }
             else {
 
-                if( (key === "." && this.state.result.indexOf(".") === -1) || key != ".") {
+                if( (key === "." && this.state.result.indexOf(".") === -1) || key !== ".") {
 
                         this.setState({
                             result: this.state.result + key
