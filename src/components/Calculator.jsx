@@ -36,23 +36,32 @@ class Calculator extends React.Component {
             if(this.state.lastop === "+")
             {
                 this.setState({
-                    result: parseInt(this.state.lastval) + parseInt(this.state.result)
+                    result: parseFloat(this.state.lastval) + parseFloat(this.state.result)
                 }) 
             } else if (this.state.lastop === "-")
             {
                 this.setState({
-                    result: parseInt(this.state.lastval) - parseInt(this.state.result)
+                    result: parseFloat(this.state.lastval) - parseFloat(this.state.result)
                 }) 
             } else if (this.state.lastop === "x")
             {
                 this.setState({
-                    result: parseInt(this.state.lastval) * parseInt(this.state.result)
+                    result: parseFloat(this.state.lastval) * parseFloat(this.state.result)
                 }) 
             } else if (this.state.lastop === "/")
             {
-                this.setState({
-                    result: parseInt(this.state.lastval) / parseInt(this.state.result)
-                }) 
+                if(this.state.result === "0")
+                {
+                    this.setState({
+                        result: "?Error"
+                    }) 
+                } else {
+
+                    this.setState({
+                        result: parseFloat(this.state.lastval) / parseFloat(this.state.result)
+                    }) 
+                }
+                
             }
             
         }
@@ -63,9 +72,15 @@ class Calculator extends React.Component {
                 })
             }
             else {
-                this.setState({
-                    result: this.state.result + key
-                })
+
+                if( (key === "." && this.state.result.indexOf(".") === -1) || key != ".") {
+
+                        this.setState({
+                            result: this.state.result + key
+                        })
+                }
+
+                
             }
             
         }
@@ -100,7 +115,7 @@ class Calculator extends React.Component {
                 <br />
                 <NumButton digit="+/-" />
                 <NumButton digit="0" handler={this.clickHandler}/>
-                <NumButton digit="." />
+                <NumButton digit="." handler={this.clickHandler}/>
                 <NumButton digit="=" handler={this.clickHandler}/>
             </div>
         )
